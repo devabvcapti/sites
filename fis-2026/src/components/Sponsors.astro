@@ -1,0 +1,157 @@
+---
+import Icon from "./Icon.astro";
+
+const tiers = [
+  {
+    key: "planeta",
+    label: "Planeta",
+    icon: "globe",
+    sponsors: ["Mattos Filho"],
+  },
+  {
+    key: "humanidade",
+    label: "Humanidade",
+    icon: "handshake",
+    sponsors: ["SDG Economic Development Fund"],
+  },
+  {
+    key: "biodiversidade",
+    label: "Biodiversidade",
+    icon: "leaf",
+    sponsors: ["[B]³"],
+  },
+  {
+    key: "ecossistema",
+    label: "Ecossistema",
+    icon: "chart",
+    sponsors: [
+      "Blue like an Orange",
+      "eB Capital",
+      "GEF Capital Partners",
+      "KPTL",
+      "Lightrock",
+      "SP Ventures",
+    ],
+  },
+  {
+    key: "institucionais",
+    label: "Parceiros institucionais",
+    icon: "building",
+    sponsors: ["Aliança pelo Clima", "Converge Capital", "World Climate Foundation"],
+  },
+] as const;
+---
+
+<section id="patrocinadores" class="sponsors" aria-labelledby="sponsors-heading" data-glass-reveal>
+  <div class="container">
+    <div class="sponsors__intro" data-reveal>
+      <p class="eyebrow sponsors__eyebrow">Patrocinadores FIS 2026</p>
+      <h2 id="sponsors-heading" class="section-heading">Quem torna o encontro possível</h2>
+    </div>
+
+    <div class="sponsors__tiers">
+      {tiers.map((tier, i) => (
+        <div class="sponsor-tier" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+          <div class="sponsor-tier__label">
+            <Icon name={tier.icon} size={18} />
+            <span>{tier.label}</span>
+          </div>
+          <ul class="sponsor-tier__list">
+            {tier.sponsors.map((sponsor) => (
+              <li class="sponsor-badge">{sponsor}</li>
+            ))}
+            <li class="sponsor-badge sponsor-badge--open">Espaço reservado</li>
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sponsors {
+    background: var(--navy-950);
+    color: var(--white);
+    padding-block: var(--space-2xl);
+  }
+
+  .sponsors__intro {
+    text-align: center;
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+
+  .sponsors__eyebrow {
+    color: var(--green-400);
+  }
+
+  .sponsors__intro h2 {
+    margin-top: var(--space-sm);
+    color: var(--white);
+  }
+
+  .sponsors__tiers {
+    margin-top: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .sponsor-tier {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    padding-top: var(--space-lg);
+    border-top: 1px solid color-mix(in oklch, var(--white) 14%, transparent);
+  }
+
+  .sponsor-tier:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .sponsor-tier__label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: var(--fs-label);
+    font-weight: 700;
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--green-400);
+  }
+
+  .sponsor-tier__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .sponsor-badge {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.005em;
+    padding: 0.65rem 1.1rem;
+    border-radius: var(--radius-md);
+    background: color-mix(in oklch, var(--white) 8%, transparent);
+    border: 1px solid color-mix(in oklch, var(--white) 14%, transparent);
+  }
+
+  .sponsor-badge--open {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: color-mix(in oklch, var(--white) 55%, transparent);
+    background: transparent;
+    border-style: dashed;
+  }
+
+  @media (min-width: 780px) {
+    .sponsor-tier {
+      grid-template-columns: 14rem 1fr;
+      align-items: start;
+    }
+  }
+</style>

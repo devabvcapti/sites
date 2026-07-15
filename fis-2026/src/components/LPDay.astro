@@ -1,0 +1,421 @@
+---
+import { Image } from "astro:assets";
+import cityImage from "../assets/images/sao-paulo-skyline.jpg";
+import Icon from "./Icon.astro";
+---
+
+<section id="lp-day" class="lp-day" aria-labelledby="lp-day-heading" data-glass-reveal>
+  <div class="container">
+    <div class="lp-day__intro">
+      <div data-reveal>
+        <p class="eyebrow lp-day__eyebrow">LP Day</p>
+        <h2 id="lp-day-heading" class="section-heading">
+          Uma manhã para investidores, antes de o evento abrir para todos
+        </h2>
+        <p class="lp-day__lead">
+          Em parceria com Apex Brasil e Mattos Filho, o LP Day reúne LPs brasileiros e
+          internacionais para uma rodada de conexão com gestoras, das 9h às 12h30, seguida
+          de um working lunch de networking até as 14h.
+        </p>
+        <div class="lp-day__meta">
+          <span><Icon name="calendar" size={18} /> Manhã do dia do evento · 9h–14h</span>
+          <span><Icon name="map-pin" size={18} /> Av. Brigadeiro Faria Lima, São Paulo</span>
+        </div>
+      </div>
+
+      <figure class="lp-day__image" data-reveal style="--reveal-delay:100ms">
+        <Image
+          src={cityImage}
+          alt="Vista aérea da região da Av. Faria Lima, em São Paulo, sede do LP Day"
+          widths={[400, 700, 1000]}
+          sizes="(min-width: 960px) 28vw, 90vw"
+          format="avif"
+          quality={75}
+          loading="lazy"
+        />
+        <figcaption>São Paulo, Faria Lima</figcaption>
+      </figure>
+    </div>
+
+    <div class="lp-day__panels">
+      <article class="lp-panel lp-panel--primary" data-reveal style="--reveal-delay:60ms">
+        <div class="lp-panel__header">
+          <span class="lp-panel__tag">Limited Partners</span>
+          <h3 class="lp-panel__title">Sou investidor institucional</h3>
+          <p class="lp-panel__text">
+            LPs qualificados contam com cortesia de participação no FIS, sujeita à
+            disponibilidade. Preencha o formulário para manifestar interesse.
+          </p>
+        </div>
+
+        <form class="lp-form" data-mock-form novalidate aria-describedby="lp-form-note">
+          <div class="lp-form__row">
+            <label class="lp-form__field">
+              <span>Nome completo</span>
+              <input type="text" name="nome" autocomplete="name" required />
+            </label>
+            <label class="lp-form__field">
+              <span>E-mail corporativo</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
+          <div class="lp-form__row">
+            <label class="lp-form__field">
+              <span>Instituição</span>
+              <input type="text" name="instituicao" autocomplete="organization" required />
+            </label>
+            <label class="lp-form__field">
+              <span>Perfil de investidor</span>
+              <select name="perfil" required>
+                <option value="">Selecione</option>
+                <option>Investidor institucional</option>
+                <option>Family office</option>
+                <option>Endowment / fundo patrimonial</option>
+                <option>Fundo de pensão</option>
+                <option>Outro</option>
+              </select>
+            </label>
+          </div>
+          <p class="lp-form__error" role="alert" data-form-error hidden>
+            <Icon name="alert-circle" size={16} /> Revise os campos destacados antes de enviar.
+          </p>
+          <button type="submit" class="btn btn--primary lp-form__submit">
+            <span data-btn-label>Enviar formulário LP</span>
+          </button>
+        </form>
+
+        <div class="lp-form__success" role="status" data-form-success hidden>
+          <Icon name="check-circle" size={28} />
+          <p><strong>Recebemos seu interesse.</strong> Nossa equipe confirma a cortesia por e-mail em até 3 dias úteis.</p>
+        </div>
+      </article>
+
+      <article class="lp-panel lp-panel--secondary" data-reveal style="--reveal-delay:140ms">
+        <div class="lp-panel__header">
+          <span class="lp-panel__tag lp-panel__tag--dark">General Partners</span>
+          <h3 class="lp-panel__title">Sou gestora de fundos</h3>
+          <p class="lp-panel__text">
+            Participação aberta a gestoras associadas à ABVCAP e/ou aderentes ao programa
+            inBrazil.
+          </p>
+        </div>
+
+        <form class="lp-form" data-mock-form novalidate>
+          <div class="lp-form__row">
+            <label class="lp-form__field">
+              <span>Nome completo</span>
+              <input type="text" name="nome-gp" autocomplete="name" required />
+            </label>
+            <label class="lp-form__field">
+              <span>E-mail corporativo</span>
+              <input type="email" name="email-gp" autocomplete="email" required />
+            </label>
+          </div>
+          <div class="lp-form__row">
+            <label class="lp-form__field">
+              <span>Gestora</span>
+              <input type="text" name="gestora" autocomplete="organization" required />
+            </label>
+            <label class="lp-form__field">
+              <span>Vínculo com a ABVCAP</span>
+              <select name="vinculo" required>
+                <option value="">Selecione</option>
+                <option>Associada ABVCAP</option>
+                <option>Programa inBrazil</option>
+                <option>Ainda não sou associada</option>
+              </select>
+            </label>
+          </div>
+          <p class="lp-form__error" role="alert" data-form-error hidden>
+            <Icon name="alert-circle" size={16} /> Revise os campos destacados antes de enviar.
+          </p>
+          <button type="submit" class="btn btn--dark lp-form__submit">
+            <span data-btn-label>Enviar formulário GP</span>
+          </button>
+        </form>
+
+        <div class="lp-form__success" role="status" data-form-success hidden>
+          <Icon name="check-circle" size={28} />
+          <p><strong>Formulário recebido.</strong> Confirmamos sua vaga por e-mail em até 3 dias úteis.</p>
+        </div>
+      </article>
+    </div>
+
+    <p id="lp-form-note" class="lp-day__note">
+      Vagas limitadas. Este formulário ainda não está conectado a um sistema de envio —
+      integração final a definir antes do lançamento.
+    </p>
+  </div>
+</section>
+
+<style>
+  .lp-day {
+    background: var(--bg-surface);
+    padding-block: var(--space-2xl);
+  }
+
+  .lp-day__intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    align-items: end;
+  }
+
+  .lp-day__eyebrow {
+    color: var(--green-700);
+  }
+
+  .lp-day__lead {
+    margin-top: var(--space-md);
+    font-size: var(--fs-body-lg);
+    color: var(--text-secondary);
+    max-width: 46rem;
+    text-wrap: pretty;
+  }
+
+  .lp-day__meta {
+    margin-top: var(--space-md);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  .lp-day__meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    color: var(--text-primary);
+  }
+
+  .lp-day__image {
+    margin: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-raised);
+    max-width: 26rem;
+  }
+
+  .lp-day__image :global(img) {
+    width: 100%;
+    height: 14rem;
+    object-fit: cover;
+  }
+
+  .lp-day__image figcaption {
+    position: absolute;
+    left: var(--space-sm);
+    bottom: var(--space-sm);
+    background: color-mix(in oklch, var(--navy-950) 70%, transparent);
+    color: var(--white);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: var(--space-3xs) var(--space-xs);
+    border-radius: var(--radius-pill);
+  }
+
+  .lp-day__panels {
+    margin-top: var(--space-2xl);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .lp-panel {
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    box-shadow: var(--shadow-ambient);
+  }
+
+  .lp-panel--primary {
+    background: var(--bg-surface-tint);
+    border: 1px solid color-mix(in oklch, var(--green-700) 30%, transparent);
+  }
+
+  .lp-panel--secondary {
+    background: var(--navy-50);
+    border: 1px solid color-mix(in oklch, var(--navy-700) 22%, transparent);
+  }
+
+  .lp-panel__tag {
+    display: inline-flex;
+    align-self: flex-start;
+    font-size: var(--fs-label);
+    font-weight: 700;
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    background: var(--green-500);
+    color: var(--text-on-green-bright);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .lp-panel__tag--dark {
+    background: var(--navy-900);
+    color: var(--white);
+  }
+
+  .lp-panel__title {
+    margin-top: var(--space-sm);
+    font-size: var(--fs-title);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .lp-panel__text {
+    margin-top: var(--space-2xs);
+    color: var(--text-secondary);
+    line-height: var(--lh-normal);
+  }
+
+  .lp-form__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .lp-form__row + .lp-form__row {
+    margin-top: var(--space-sm);
+  }
+
+  .lp-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .lp-form__field input,
+  .lp-form__field select {
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    background: var(--white);
+    color: var(--text-primary);
+    box-shadow: inset 0 1px 2px color-mix(in oklch, var(--navy-900) 5%, transparent);
+  }
+
+  .lp-form__field input:focus-visible,
+  .lp-form__field select:focus-visible {
+    outline: 2px solid var(--green-700);
+    outline-offset: 1px;
+  }
+
+  .lp-form__field :invalid {
+    box-shadow: none;
+  }
+
+  .lp-form.was-validated .lp-form__field input:invalid,
+  .lp-form.was-validated .lp-form__field select:invalid {
+    border-color: oklch(55% 0.18 25);
+  }
+
+  .lp-form__error {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    color: oklch(45% 0.19 25);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .lp-form__submit {
+    align-self: flex-start;
+    margin-top: var(--space-2xs);
+  }
+
+  .lp-form__submit[data-loading="true"] {
+    opacity: 0.75;
+  }
+
+  .lp-form__success {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    color: var(--green-800);
+    font-size: 0.9375rem;
+    line-height: var(--lh-normal);
+  }
+
+  .lp-day__note {
+    margin-top: var(--space-lg);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  @media (min-width: 720px) {
+    .lp-form__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .lp-day__intro {
+      grid-template-columns: 1.4fr 1fr;
+    }
+
+    .lp-day__panels {
+      grid-template-columns: 1.15fr 1fr;
+      align-items: stretch;
+    }
+  }
+</style>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>("[data-mock-form]");
+
+  forms.forEach((form) => {
+    const errorEl = form.querySelector<HTMLElement>("[data-form-error]");
+    const successEl = form.parentElement?.querySelector<HTMLElement>("[data-form-success]");
+    const submitBtn = form.querySelector<HTMLButtonElement>(".lp-form__submit");
+    const labelEl = submitBtn?.querySelector<HTMLElement>("[data-btn-label]");
+    const fields = form.querySelectorAll<HTMLInputElement | HTMLSelectElement>("input, select");
+
+    const markValidity = (field: HTMLInputElement | HTMLSelectElement) => {
+      field.setAttribute("aria-invalid", String(!field.validity.valid));
+    };
+
+    fields.forEach((field) => {
+      field.addEventListener("input", () => markValidity(field));
+      field.addEventListener("change", () => markValidity(field));
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      form.classList.add("was-validated");
+      fields.forEach(markValidity);
+
+      if (!form.checkValidity()) {
+        errorEl?.removeAttribute("hidden");
+        form.querySelector<HTMLElement>(":invalid")?.focus();
+        return;
+      }
+
+      errorEl?.setAttribute("hidden", "");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.loading = "true";
+      }
+      if (labelEl) labelEl.textContent = "Enviando...";
+
+      window.setTimeout(() => {
+        form.hidden = true;
+        successEl?.removeAttribute("hidden");
+        successEl?.setAttribute("tabindex", "-1");
+        successEl?.focus();
+      }, 700);
+    });
+  });
+</script>

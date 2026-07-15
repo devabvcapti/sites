@@ -1,0 +1,217 @@
+---
+import Icon from "./Icon.astro";
+import LogoABVCAP from "./LogoABVCAP.astro";
+
+const contacts = [
+  { icon: "mail", label: "Mais informações", value: "eventos@abvcap.com.br", href: "mailto:eventos@abvcap.com.br" },
+  { icon: "phone", label: "Mais informações", value: "+55 11 3280-8022", href: "tel:+551132808022" },
+  { icon: "mail", label: "Imprensa", value: "imprensa@abvcap.com.br", href: "mailto:imprensa@abvcap.com.br" },
+];
+
+const socials = [
+  { icon: "instagram", label: "Instagram", href: "#" },
+  { icon: "linkedin", label: "LinkedIn", href: "#" },
+  { icon: "youtube", label: "YouTube", href: "#" },
+] as const;
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <span class="site-footer__mark" aria-hidden="true"><LogoABVCAP size={22} /></span>
+        <div>
+          <p class="site-footer__title">abvcap</p>
+          <p class="site-footer__subtitle">Associação Brasileira de Private Equity e Venture Capital · Realização do FIS 2026</p>
+        </div>
+      </div>
+
+      <ul class="site-footer__contacts">
+        {contacts.map((contact) => (
+          <li>
+            <Icon name={contact.icon} size={16} />
+            <span>
+              <span class="site-footer__contact-label">{contact.label}:</span>{" "}
+              <a href={contact.href}>{contact.value}</a>
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <ul class="site-footer__socials" aria-label="Redes sociais">
+        {socials.map((social) => (
+          <li>
+            <a href={social.href} aria-label={social.label}>
+              <Icon name={social.icon} size={18} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="site-footer__promo">
+      <span>Promovido por</span>
+      <strong>apexBrasil</strong>
+      <strong>Governo Federal</strong>
+      <strong>ABVCAP</strong>
+    </div>
+
+    <div class="site-footer__legal">
+      <p>ABVCAP — Rua Pequetita 145, Sala 81, Vila Olímpia, São Paulo · +55 11 3106-5025</p>
+      <p>
+        Vídeo: Llywelyn2000, via Wikimedia Commons, recortado e recomprimido
+        (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>).
+        Foto: autor via Wikimedia Commons
+        (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a>)
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--navy-900);
+    color: var(--text-on-navy-muted);
+    padding-block: var(--space-xl) var(--space-lg);
+  }
+
+  .site-footer__top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid color-mix(in oklch, var(--white) 14%, transparent);
+  }
+
+  .site-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .site-footer__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--green-500);
+    color: var(--navy-900);
+    flex-shrink: 0;
+  }
+
+  .site-footer__title {
+    margin: 0;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--white);
+  }
+
+  .site-footer__subtitle {
+    margin: 0.15rem 0 0;
+    font-size: 0.8125rem;
+  }
+
+  .site-footer__contacts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    font-size: 0.875rem;
+  }
+
+  .site-footer__contacts li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .site-footer__contact-label {
+    color: color-mix(in oklch, var(--white) 55%, transparent);
+  }
+
+  .site-footer__contacts a {
+    color: var(--white);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .site-footer__contacts a:hover {
+    text-decoration: underline;
+  }
+
+  .site-footer__socials {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .site-footer__socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklch, var(--white) 20%, transparent);
+    color: var(--white);
+    transition: background-color var(--duration-fast) var(--ease-out-quart);
+  }
+
+  .site-footer__socials a:hover {
+    background: color-mix(in oklch, var(--white) 10%, transparent);
+  }
+
+  .site-footer__promo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm) var(--space-lg);
+    padding-block: var(--space-lg);
+    font-size: 0.9375rem;
+  }
+
+  .site-footer__promo span {
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: color-mix(in oklch, var(--white) 55%, transparent);
+  }
+
+  .site-footer__promo strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .site-footer__legal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    font-size: 0.75rem;
+    color: color-mix(in oklch, var(--white) 50%, transparent);
+  }
+
+  .site-footer__legal a {
+    color: inherit;
+  }
+
+  @media (min-width: 780px) {
+    .site-footer__top {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 620px) {
+    .site-footer__legal {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+</style>

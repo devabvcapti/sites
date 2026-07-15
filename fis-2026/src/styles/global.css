@@ -1,0 +1,365 @@
+@import "@fontsource-variable/plus-jakarta-sans";
+
+/* =========================================================
+   FIS — Design tokens
+   Committed color strategy: green carries 30-60% of surface,
+   navy anchors institutional credibility. See DESIGN.md.
+   ========================================================= */
+:root {
+  /* --- Color: Navy (secondary / institutional anchor) --- */
+  --navy-950: oklch(16% 0.05 262);
+  --navy-900: oklch(20% 0.06 262);
+  --navy-800: oklch(27% 0.07 262);
+  --navy-700: oklch(34% 0.075 262);
+  --navy-50: oklch(94% 0.016 262);
+
+  /* --- Color: Green (primary / energy, "Living Green Rule") --- */
+  --green-800: oklch(38% 0.13 145);
+  --green-700: oklch(46% 0.15 145);
+  --green-500: oklch(74% 0.19 142);
+  --green-400: oklch(80% 0.18 140);
+  --green-100: oklch(95% 0.045 142);
+  --green-50: oklch(93% 0.055 142);
+
+  /* --- Color: Neutrals (tinted toward the green hue, not warm) --- */
+  --neutral-0: oklch(97.5% 0.014 142);
+  --neutral-50: oklch(95.5% 0.026 142);
+  --neutral-100: oklch(96.5% 0.006 142);
+  --neutral-200: oklch(92% 0.008 142);
+  --neutral-300: oklch(84% 0.01 142);
+
+  /* --- Color: Ink (navy-tinted text) --- */
+  --ink-900: oklch(20% 0.03 262);
+  --ink-700: oklch(32% 0.028 262);
+  --ink-500: oklch(46% 0.025 262);
+  --white: oklch(100% 0 0);
+
+  /* --- Semantic aliases --- */
+  --bg-body: var(--neutral-0);
+  --bg-surface: var(--neutral-50);
+  --bg-surface-tint: var(--green-50);
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-500);
+  --text-on-navy: var(--white);
+  --text-on-navy-muted: oklch(84% 0.03 262);
+  --text-on-green-bright: var(--navy-900);
+  --text-on-green-deep: var(--white);
+  --border-subtle: var(--neutral-200);
+  --border-on-navy: oklch(34% 0.08 262);
+
+  /* --- Typography --- */
+  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif;
+  --fs-display: clamp(2.75rem, 2.1rem + 3.2vw, 5.5rem);
+  --fs-headline: clamp(1.9rem, 1.6rem + 1.4vw, 3rem);
+  --fs-title: clamp(1.25rem, 1.15rem + 0.5vw, 1.625rem);
+  --fs-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-label: 0.8125rem;
+  --lh-tight: 1.05;
+  --lh-snug: 1.25;
+  --lh-normal: 1.55;
+  --ls-display: -0.03em;
+  --ls-label: 0.08em;
+
+  /* --- Spacing scale --- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 9rem;
+
+  /* --- Radius (cards top out at 16px; pills for tags/buttons) --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* --- Elevation: layered, purposeful (see DESIGN.md "Depth-With-Purpose Rule") --- */
+  --shadow-ambient: 0 1px 2px oklch(20% 0.05 262 / 0.06), 0 2px 6px oklch(20% 0.05 262 / 0.06);
+  --shadow-raised: 0 4px 8px oklch(20% 0.05 262 / 0.10), 0 1px 3px oklch(20% 0.05 262 / 0.08);
+  --shadow-floating: 0 12px 32px oklch(20% 0.05 262 / 0.16);
+
+  /* --- Motion --- */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+  --duration-reveal: 900ms;
+
+  /* --- Layout --- */
+  --container-max: 78rem;
+  --container-pad: clamp(1.25rem, 4vw, 3rem);
+
+  /* --- Z-index scale --- */
+  --z-dropdown: 20;
+  --z-sticky: 30;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+  --z-tooltip: 70;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  color: var(--text-primary);
+  background: var(--bg-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: var(--space-sm);
+  z-index: var(--z-toast);
+  background: var(--navy-900);
+  color: var(--white);
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: top var(--duration-fast) var(--ease-out-quart);
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+:focus-visible {
+  outline: 2px solid var(--green-500);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1;
+  padding: 0.95rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--duration-fast) var(--ease-out-quart),
+    color var(--duration-fast) var(--ease-out-quart),
+    border-color var(--duration-fast) var(--ease-out-quart),
+    transform var(--duration-fast) var(--ease-out-quart);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--green-500);
+  color: var(--text-on-green-bright);
+}
+
+.btn--primary:hover {
+  background: var(--green-400);
+}
+
+.btn--outline-light {
+  border-color: color-mix(in oklch, var(--white) 45%, transparent);
+  color: var(--white);
+}
+
+.btn--outline-light:hover {
+  background: color-mix(in oklch, var(--white) 12%, transparent);
+  border-color: var(--white);
+}
+
+.btn--outline-dark {
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.btn--outline-dark:hover {
+  background: var(--neutral-100);
+  border-color: var(--ink-500);
+}
+
+.btn--dark {
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.btn--dark:hover {
+  background: var(--navy-800);
+}
+
+.btn--sm {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.875rem;
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .btn--sm {
+    display: inline-flex;
+  }
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   Section scaffolding
+   ========================================================= */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+}
+
+.section-heading {
+  font-size: var(--fs-headline);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* =========================================================
+   Scroll reveal (progressive enhancement; content is visible by default) */
+[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--duration-reveal) var(--ease-out-expo),
+      transform var(--duration-reveal) var(--ease-out-expo);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================================================
+   Glass reveal: whole section loads in through frosted glass + blur */
+[data-glass-reveal] {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-glass-reveal] {
+    filter: blur(22px);
+    pointer-events: none;
+    transition: filter var(--duration-reveal) var(--ease-out-expo);
+  }
+
+  [data-glass-reveal].is-visible {
+    filter: blur(0);
+    pointer-events: auto;
+  }
+
+  [data-glass-reveal]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: color-mix(in oklch, var(--white) 16%, transparent);
+    backdrop-filter: blur(30px) saturate(140%);
+    -webkit-backdrop-filter: blur(30px) saturate(140%);
+    border-top: 1px solid color-mix(in oklch, var(--white) 32%, transparent);
+    opacity: 1;
+    transition: opacity var(--duration-reveal) var(--ease-out-expo);
+  }
+
+  [data-glass-reveal].is-visible::after {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

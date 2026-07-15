@@ -1,0 +1,525 @@
+---
+import { Image } from "astro:assets";
+import Icon from "./Icon.astro";
+import camila from "../assets/images/speakers/camila.jpg";
+import rafael from "../assets/images/speakers/rafael.jpg";
+import helena from "../assets/images/speakers/helena.jpg";
+import bruno from "../assets/images/speakers/bruno.jpg";
+import marina from "../assets/images/speakers/marina.jpg";
+import felipe from "../assets/images/speakers/felipe.jpg";
+import juliana from "../assets/images/speakers/juliana.jpg";
+import thiago from "../assets/images/speakers/thiago.jpg";
+import renata from "../assets/images/speakers/renata.jpg";
+
+const slugify = (name: string) =>
+  name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-");
+
+const featured = [
+  {
+    name: "Camila Andrade",
+    role: "Sócia · Impacto e Sustentabilidade",
+    org: "Ecossistema Capital",
+    topic: "Métricas de impacto que resistem à diligência de um LP",
+    bio: "Camila lidera a tese de impacto da Ecossistema Capital, com foco em métricas auditáveis de carbono e biodiversidade para fundos de PE/VC no Brasil.",
+    tone: "green",
+    photo: camila,
+  },
+  {
+    name: "Rafael Nogueira",
+    role: "Head de Investimentos",
+    org: "Fundação Multi-mercado",
+    topic: "Alocação institucional em ativos de transição climática",
+    bio: "Rafael comanda a alocação de ativos de transição climática da Fundação Multi-mercado, com mais de 15 anos em gestão de portfólio institucional.",
+    tone: "navy",
+    photo: rafael,
+  },
+  {
+    name: "Helena Mourão",
+    role: "Diretora de Política Pública",
+    org: "Aliança pelo Clima",
+    topic: "O papel do regulador na próxima década de capital verde",
+    bio: "Helena atua na interface entre regulação financeira e agenda climática, tendo participado da formulação de marcos regulatórios de finanças sustentáveis no Brasil.",
+    tone: "green-deep",
+    photo: helena,
+  },
+] as const;
+
+const compact = [
+  {
+    name: "Bruno Kato",
+    role: "Managing Partner, Biodiversidade Ventures",
+    tag: "Venture Capital",
+    bio: "Bruno é sócio-gestor da Biodiversidade Ventures, fundo especializado em bioeconomia e ativos de floresta em pé.",
+    photo: bruno,
+  },
+  {
+    name: "Marina Salles",
+    role: "Diretora de ESG, Governança Capital",
+    tag: "Governança",
+    bio: "Marina lidera práticas de governança e ESG na Governança Capital, com atuação em due diligence de impacto para fundos de PE.",
+    photo: marina,
+  },
+  {
+    name: "Felipe Duarte",
+    role: "Sócio-fundador, Ecossistema Ventures",
+    tag: "Private Equity",
+    bio: "Felipe cofundou a Ecossistema Ventures, gestora de venture capital focada em soluções de adaptação climática.",
+    photo: felipe,
+  },
+  {
+    name: "Juliana Prado",
+    role: "Head de LPs, Family Office Aliança",
+    tag: "Family Office",
+    bio: "Juliana coordena o relacionamento com LPs do Family Office Aliança, com foco em alocação sustentável de patrimônio familiar.",
+    photo: juliana,
+  },
+  {
+    name: "Thiago Ramalho",
+    role: "Economista-chefe, Instituto Clima e Capital",
+    tag: "Pesquisa",
+    bio: "Thiago é economista-chefe do Instituto Clima e Capital, onde pesquisa o custo econômico da inação climática no Brasil.",
+    photo: thiago,
+  },
+  {
+    name: "Renata Vieira",
+    role: "Sócia, Converge Capital Partners",
+    tag: "Private Equity",
+    bio: "Renata é sócia da Converge Capital Partners, com atuação em operações de private equity voltadas à transição energética.",
+    photo: renata,
+  },
+] as const;
+---
+
+<section id="palestrantes" class="speakers" aria-labelledby="speakers-heading" data-glass-reveal>
+  <div class="container">
+    <div class="speakers__intro" data-reveal>
+      <p class="eyebrow speakers__eyebrow">Palestrantes</p>
+      <h2 id="speakers-heading" class="section-heading">Uma rede, não uma vitrine</h2>
+      <p class="speakers__lead">
+        Curadoria de quem decide alocação, constrói política pública e mede impacto na
+        prática — organizada por quem participa da conversa, não por ordem alfabética.
+        Clique em um nome para ver a bio.
+      </p>
+      <p class="speakers__disclaimer">
+        Fotos e nomes ilustrativos, apenas para representar o formato final da seção.
+      </p>
+    </div>
+
+    <div class="speakers__featured">
+      {featured.map((speaker, i) => {
+        const bioId = `bio-${slugify(speaker.name)}`;
+        return (
+          <article
+            class={`speaker-card speaker-card--${speaker.tone}`}
+            data-reveal
+            style={`--reveal-delay:${i * 90}ms`}
+            data-bio-host
+          >
+            <div class="speaker-card__main">
+              <button
+                type="button"
+                class="speaker-card__trigger"
+                aria-expanded="false"
+                aria-controls={bioId}
+                aria-label={`Ver biografia de ${speaker.name}`}
+                data-bio-trigger
+              />
+              <span class="speaker-card__chevron" aria-hidden="true">
+                <Icon name="chevron-down" size={16} />
+              </span>
+              <Image
+                src={speaker.photo}
+                alt=""
+                width={104}
+                height={104}
+                class="speaker-card__avatar"
+              />
+              <h3 class="speaker-card__name">{speaker.name}</h3>
+              <p class="speaker-card__role">{speaker.role}<br /><span>{speaker.org}</span></p>
+              <p class="speaker-card__topic">"{speaker.topic}"</p>
+            </div>
+            <div id={bioId} class="speaker-card__bio-wrapper" inert>
+              <div class="speaker-card__bio-inner">
+                <p class="speaker-card__bio">{speaker.bio}</p>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <ul class="speakers__compact">
+      {compact.map((speaker, i) => {
+        const bioId = `bio-${slugify(speaker.name)}`;
+        return (
+          <li class="speaker-row" data-reveal style={`--reveal-delay:${i * 60}ms`} data-bio-host>
+            <div class="speaker-row__main">
+              <button
+                type="button"
+                class="speaker-row__trigger"
+                aria-expanded="false"
+                aria-controls={bioId}
+                aria-label={`Ver biografia de ${speaker.name}`}
+                data-bio-trigger
+              />
+              <Image
+                src={speaker.photo}
+                alt=""
+                width={80}
+                height={80}
+                class="speaker-row__avatar"
+              />
+              <span class="speaker-row__info">
+                <strong>{speaker.name}</strong>
+                <span>{speaker.role}</span>
+              </span>
+              <span class="speaker-row__tag">{speaker.tag}</span>
+              <span class="speaker-row__chevron" aria-hidden="true">
+                <Icon name="chevron-down" size={16} />
+              </span>
+            </div>
+            <div id={bioId} class="speaker-row__bio-wrapper" inert>
+              <div class="speaker-row__bio-inner">
+                <p class="speaker-row__bio">{speaker.bio}</p>
+              </div>
+            </div>
+          </li>
+        );
+      })}
+      <li class="speaker-row speaker-row--pending">
+        <div class="speaker-row__main">
+          <span class="speaker-row__avatar speaker-row__avatar--pending" aria-hidden="true">
+            <Icon name="sparkle" size={16} />
+          </span>
+          <span class="speaker-row__info">
+            <strong>Mais nomes em curadoria</strong>
+            <span>Programação completa divulgada em breve</span>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .speakers {
+    background: var(--bg-body);
+    padding-block: var(--space-2xl);
+  }
+
+  .speakers__intro {
+    max-width: 42rem;
+  }
+
+  .speakers__eyebrow {
+    color: var(--green-700);
+  }
+
+  .speakers__lead {
+    margin-top: var(--space-md);
+    font-size: var(--fs-body-lg);
+    color: var(--text-secondary);
+    text-wrap: pretty;
+  }
+
+  .speakers__disclaimer {
+    margin-top: var(--space-sm);
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  .speakers__featured {
+    margin-top: var(--space-2xl);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .speaker-card {
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    color: var(--white);
+    box-shadow: var(--shadow-raised);
+  }
+
+  .speaker-card--green {
+    background: linear-gradient(160deg, var(--green-700), var(--green-800));
+  }
+
+  .speaker-card--navy {
+    background: linear-gradient(160deg, var(--navy-800), var(--navy-950));
+  }
+
+  .speaker-card--green-deep {
+    background: linear-gradient(160deg, var(--navy-900), var(--green-800));
+  }
+
+  .speaker-card__main {
+    position: relative;
+  }
+
+  .speaker-card__trigger {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+  }
+
+  .speaker-card__trigger:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+  }
+
+  .speaker-card__chevron {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: color-mix(in oklch, var(--white) 16%, transparent);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .speaker-card__chevron {
+      transition: transform var(--duration-base) var(--ease-out-quart);
+    }
+  }
+
+  .speaker-card.is-open .speaker-card__chevron {
+    transform: rotate(180deg);
+  }
+
+  .speaker-card__avatar {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 2px color-mix(in oklch, var(--white) 30%, transparent);
+  }
+
+  .speaker-card__name {
+    margin-top: var(--space-md);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .speaker-card__role {
+    margin-top: var(--space-3xs);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: color-mix(in oklch, var(--white) 78%, transparent);
+    line-height: var(--lh-snug);
+  }
+
+  .speaker-card__role span {
+    font-weight: 500;
+    color: color-mix(in oklch, var(--white) 62%, transparent);
+  }
+
+  .speaker-card__topic {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid color-mix(in oklch, var(--white) 20%, transparent);
+    font-size: 0.9375rem;
+    font-style: italic;
+    line-height: var(--lh-normal);
+    color: color-mix(in oklch, var(--white) 92%, transparent);
+  }
+
+  .speaker-card__bio-wrapper,
+  .speaker-row__bio-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .speaker-card__bio-wrapper,
+    .speaker-row__bio-wrapper {
+      transition: grid-template-rows var(--duration-slow) var(--ease-out-quart);
+    }
+  }
+
+  .speaker-card__bio-wrapper.is-open,
+  .speaker-row__bio-wrapper.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  .speaker-card__bio-inner,
+  .speaker-row__bio-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .speaker-card__bio {
+    padding-top: var(--space-md);
+    font-size: 0.875rem;
+    line-height: var(--lh-normal);
+    color: color-mix(in oklch, var(--white) 88%, transparent);
+  }
+
+  .speakers__compact {
+    list-style: none;
+    margin: var(--space-lg) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xs);
+    align-items: start;
+  }
+
+  .speaker-row {
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .speaker-row__main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+  }
+
+  .speaker-row__trigger {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+  }
+
+  .speaker-row__trigger:focus-visible {
+    outline: 2px solid var(--green-700);
+    outline-offset: 2px;
+  }
+
+  .speaker-row__avatar {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  span.speaker-row__avatar--pending {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--neutral-100);
+    color: var(--text-secondary);
+  }
+
+  .speaker-row__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-size: 0.875rem;
+  }
+
+  .speaker-row__info strong {
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .speaker-row__info span {
+    color: var(--text-secondary);
+  }
+
+  .speaker-row__tag {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--green-700);
+    background: var(--green-100);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .speaker-row__chevron {
+    flex-shrink: 0;
+    display: inline-flex;
+    color: var(--text-secondary);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .speaker-row__chevron {
+      transition: transform var(--duration-base) var(--ease-out-quart);
+    }
+  }
+
+  .speaker-row.is-open .speaker-row__chevron {
+    transform: rotate(180deg);
+  }
+
+  .speaker-row__bio-inner {
+    padding: 0 var(--space-sm);
+  }
+
+  .speaker-row__bio {
+    padding: 0 0 var(--space-sm) calc(2.5rem + var(--space-sm));
+    font-size: 0.875rem;
+    line-height: var(--lh-normal);
+    color: var(--text-secondary);
+  }
+
+  .speaker-row--pending {
+    background: transparent;
+    border-style: dashed;
+  }
+
+  @media (min-width: 620px) {
+    .speakers__compact {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  const hosts = document.querySelectorAll<HTMLElement>("[data-bio-host]");
+
+  hosts.forEach((host) => {
+    const trigger = host.querySelector<HTMLButtonElement>("[data-bio-trigger]");
+    const panelId = trigger?.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!trigger || !panel) return;
+
+    trigger.addEventListener("click", () => {
+      const isOpen = trigger.getAttribute("aria-expanded") === "true";
+      trigger.setAttribute("aria-expanded", String(!isOpen));
+      host.classList.toggle("is-open", !isOpen);
+      panel.classList.toggle("is-open", !isOpen);
+      if (isOpen) {
+        panel.setAttribute("inert", "");
+      } else {
+        panel.removeAttribute("inert");
+      }
+    });
+  });
+</script>

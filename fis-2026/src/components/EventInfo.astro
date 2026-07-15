@@ -1,0 +1,166 @@
+---
+import Icon from "./Icon.astro";
+
+const themes = [
+  { icon: "globe", label: "Agenda climática global" },
+  { icon: "leaf", label: "Biodiversidade" },
+  { icon: "chart", label: "Transição energética" },
+  { icon: "handshake", label: "Impacto social" },
+  { icon: "building", label: "Governança ESG" },
+] as const;
+
+const pillars = [
+  {
+    icon: "chart",
+    title: "Capital privado, impacto mensurável",
+    text: "Como recursos de private equity e venture capital reduzem impactos climáticos negativos com métricas que resistem à diligência de um LP.",
+  },
+  {
+    icon: "leaf",
+    title: "Biodiversidade como classe de ativo",
+    text: "Análises avançadas para ampliar a eficácia de projetos que colocam a floresta em pé no centro da tese de investimento.",
+  },
+  {
+    icon: "globe",
+    title: "Estratégia para a década",
+    text: "Um roteiro prático para gestoras que querem acelerar a adoção de práticas sustentáveis sem abrir mão de retorno.",
+  },
+] as const;
+---
+
+<section id="evento" class="event-info" aria-labelledby="evento-heading" data-glass-reveal>
+  <div class="container">
+    <div class="event-info__intro" data-reveal>
+      <p class="eyebrow event-info__eyebrow">O Evento</p>
+      <h2 id="evento-heading" class="section-heading event-info__heading">
+        Onde o capital encontra a agenda de sustentabilidade
+      </h2>
+      <p class="event-info__lead">
+        O FIS reúne, num único dia, quem aloca capital e quem constrói a ponte entre
+        retorno financeiro e resultado ambiental real — sem discurso, com dados.
+      </p>
+    </div>
+
+    <ul class="event-info__themes" data-reveal style="--reveal-delay:80ms">
+      {themes.map((theme) => (
+        <li class="event-info__theme">
+          <span class="event-info__theme-icon"><Icon name={theme.icon} size={20} /></span>
+          {theme.label}
+        </li>
+      ))}
+    </ul>
+
+    <div class="event-info__pillars">
+      {pillars.map((pillar, i) => (
+        <article
+          class="event-info__pillar"
+          data-reveal
+          style={`--reveal-delay:${120 + i * 90}ms`}
+        >
+          <span class="event-info__pillar-icon"><Icon name={pillar.icon} size={22} /></span>
+          <h3 class="event-info__pillar-title">{pillar.title}</h3>
+          <p class="event-info__pillar-text">{pillar.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .event-info {
+    background: var(--navy-900);
+    color: var(--white);
+    padding-block: var(--space-2xl);
+  }
+
+  .event-info__intro {
+    max-width: 42rem;
+  }
+
+  .event-info__eyebrow {
+    color: var(--green-400);
+  }
+
+  .event-info__heading {
+    margin-top: var(--space-sm);
+    color: var(--white);
+  }
+
+  .event-info__lead {
+    margin-top: var(--space-md);
+    font-size: var(--fs-body-lg);
+    color: var(--text-on-navy-muted);
+    text-wrap: pretty;
+  }
+
+  .event-info__themes {
+    list-style: none;
+    margin: var(--space-xl) 0 0;
+    padding: var(--space-md) 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-lg);
+    border-block: 1px solid color-mix(in oklch, var(--white) 16%, transparent);
+  }
+
+  @media (min-width: 1100px) {
+    .event-info__themes {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+  }
+
+  .event-info__theme {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-on-navy-muted);
+  }
+
+  .event-info__theme-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: color-mix(in oklch, var(--green-500) 22%, transparent);
+    color: var(--green-400);
+    flex-shrink: 0;
+  }
+
+  .event-info__pillars {
+    margin-top: var(--space-2xl);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  .event-info__pillar-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-md);
+    background: var(--green-500);
+    color: var(--text-on-green-bright);
+  }
+
+  .event-info__pillar-title {
+    margin-top: var(--space-md);
+    font-size: var(--fs-title);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .event-info__pillar-text {
+    margin-top: var(--space-2xs);
+    color: var(--text-on-navy-muted);
+    line-height: var(--lh-normal);
+    max-width: 32ch;
+  }
+</style>
